@@ -1,0 +1,13 @@
+.scrollBar {
+  overflow-y: auto;
+}
+
+.scrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+.images{
+  object-fit: contain;
+  width: 300px;
+  height: 300px !important;
+}
