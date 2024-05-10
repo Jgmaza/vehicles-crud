@@ -17,7 +17,7 @@ export default function Home() {
     },
   });
   return (
-    <main className={`bg-[#09090b] h-lvh ${inter.className}`}>
+    <main className={`bg-[#09090b] h-lvh max-h-screen scroll-auto ${inter.className}`}>
       <h1 className="text-white text-4xl font-bold text-center pt-10">
         Vehículos
       </h1>
