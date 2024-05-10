@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Inter } from "next/font/google";
 
 import Style from "./style.module.css";
+import { DialogDemo } from "@/components/module/vehicleForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,9 +47,8 @@ export default function Home() {
         ))}
       </div>
 
-      <Button className="bg-[#1e1e1e] text-white fixed bottom-5 right-5 rounded-full">
-        <i className="fas fa-plus"></i>
-      </Button>
+      <DialogDemo />
+
     </main>
   );
 }
