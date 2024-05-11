@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Vehicle[] | Vehicle | error>
+  res: NextApiResponse<Vehicle[] | Vehicle | error | { message: string }>
 ) {
   try {
     if (req.method === "GET") {
