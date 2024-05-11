@@ -10,8 +10,46 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { useMutation } from "@tanstack/react-query";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type VehicleForm = {
+  name: string;
+  make: string;
+  model: string;
+  year: number;
+  price: number;
+  photo: string;
+};
 
 export function DialogDemo() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<VehicleForm>();
+
+  const mutation = useMutation({
+    mutationFn: async (data: VehicleForm) => {
+      const response = await fetch("/api/vehicle", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    },
+  });
+
+  const onSubmit: SubmitHandler<VehicleForm> = (data) => {
+    mutation.mutate(data);
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -35,6 +73,7 @@ export function DialogDemo() {
               id="name"
               placeholder="Nombre del vehículo"
               className="col-span-3 bg-[#2b2b2b] text-white"
+              
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -93,10 +132,16 @@ export function DialogDemo() {
           </div>
         </div>
         <DialogFooter>
-          <Button className="bg-[#2b2b2b] text-white" variant={"destructive"}>
-            Cancelar
-          </Button>
-          <Button className="bg-[#2b2b2b] text-white" variant={"default"}>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Cerrar
+            </Button>
+          </DialogClose>
+          <Button
+            className="bg-[#2b2b2b] text-white"
+            variant={"default"}
+            onClick={handleSubmit(onSubmit)}
+          >
             Guardar
           </Button>
         </DialogFooter>

@@ -28,7 +28,7 @@ export default function Home() {
       <h1 className="text-white text-4xl font-bold text-center pt-10">
         Vehículos
       </h1>
-      <div className="flex flex-row gap-4 p-4">
+      <div className="flex flex-row flex-wrap gap-4 p-6">
         {data?.map((vehicle: Vehicle) => (
           <Card key={vehicle.id} className="p-4 bg-[#1e1e1e] text-white w-fit">
             <img
