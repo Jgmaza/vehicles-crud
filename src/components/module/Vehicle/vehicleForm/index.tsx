@@ -100,7 +100,7 @@ export function DialogDemo(props: VehicleFormProps) {
           "Content-Type": "application/json",
         },
       });
-      if (response.status !== 204) {
+      if (response.status !== 200) {
         throw new Error(response.statusText);
       }
       return response.json();

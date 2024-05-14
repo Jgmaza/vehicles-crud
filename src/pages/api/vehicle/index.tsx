@@ -56,7 +56,7 @@ export default async function handler(
           updatedAt: new Date(),
         },
       });
-      return res.status(204).json(vehicle);
+      return res.status(200).json(vehicle);
     }
   } catch (error) {
     res.status(500).json(error as error);
